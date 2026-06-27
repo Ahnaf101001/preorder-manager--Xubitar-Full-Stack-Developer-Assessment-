@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Preorder {
+  id           Int      @id @default(autoincrement())
+  name         String
+  products     Int      @default(1)
+  preorderWhen String   @default("regardless-of-stock")
+  startsAt     DateTime
+  endsAt       DateTime?
+  status       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
